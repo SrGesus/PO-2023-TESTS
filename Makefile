@@ -7,9 +7,11 @@ ccyellow="\033[0;32m\033[1m"
 ccend="\033[0m"
 
 all: $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR) $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(wildcard tests/*/*.in) $(wildcard tests/*.in) clean
-	@echo tests done
 
-tests/%.in: tests/%.out
+# Force target to run
+force:
+
+tests/%.in: tests/%.out force
 	@-if test -f "tests/$*.import"; \
 	then \
 		java -cp $(CLASSPATH) -Dimport=$(CURRENT_DIR)/tests/$*.import -Din=$(CURRENT_DIR)/tests/$*.in -Dout=$(CURRENT_DIR)/tests/$*.outhyp xxl.app.App; \
@@ -37,10 +39,8 @@ $(XXL_DIR)/xxl-app/xxl-app.jar: $(wildcard xxl-app/src/xxl/app/*.java) $(wildcar
 	$(MAKE) -C $(XXL_DIR)/xxl-app PO_UILIB_DIR="$(PO_UILIB_DIR)"
 
 clean:
-	$(RM) tests/*/*.diff
-	$(RM) tests/*.diff
-	$(RM) tests/*/*.outhyp
-	$(RM) tests/*.outhyp
+	@$(RM) tests/*/*.outhyp
+	@$(RM) tests/*.outhyp
 	
 
 $(PO_UILIB_DIR)/po-uilib.jar:
