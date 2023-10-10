@@ -41,6 +41,7 @@ clean:
 	$(RM) tests/*.diff
 	$(RM) tests/*/*.outhyp
 	$(RM) tests/*.outhyp
+	
 
 $(PO_UILIB_DIR)/po-uilib.jar:
 	$(error po-uilib.jar not found in $(PO_UILIB_DIR). Please change the directory in the file: $(CONFIG).)
