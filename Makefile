@@ -6,7 +6,8 @@ ccred="\033[0;31m\033[1m"
 ccyellow="\033[0;32m\033[1m"
 ccend="\033[0m"
 
-all: $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR) $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(wildcard tests/*/*.in) $(wildcard tests/*.in)
+all: $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR) $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(wildcard tests/*/*.in) $(wildcard tests/*.in) clean
+	@echo tests done
 
 tests/%.in: tests/%.out
 	@-if test -f "tests/$*.import"; \
@@ -16,9 +17,12 @@ tests/%.in: tests/%.out
 		java -cp $(CLASSPATH) -Din=$(CURRENT_DIR)/tests/$*.in -Dout=$(CURRENT_DIR)/tests/$*.outhyp xxl.app.App; \
 	fi
 
-	@if test -z $$(diff -iw --color tests/$*.out tests/$*.outhyp); \
-	then echo -e $* $(ccyellow)PASSED$(ccend).; \
-	else echo -e $* $(ccred)FAILED$(ccend).; diff -iwu --color tests/$*.out tests/$*.outhyp; \
+	@-if test -z "$$(diff -iw --color tests/$*.out tests/$*.outhyp)"; \
+	then \
+		echo -e $* $(ccyellow)PASSED$(ccend).; \
+	else \
+		echo -e $* $(ccred)FAILED$(ccend).; \
+		diff -iwu --color tests/$*.out tests/$*.outhyp; \
 	fi
 
 tests/%.out:
