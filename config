@@ -1,0 +1,5 @@
+# Path to the folder with the po-uilib.jar file 
+PO_UILIB_DIR=/usr/share/java
+
+# Path to the folder with your project
+XXL_DIR=/home/poo/XXL
