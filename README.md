@@ -1,6 +1,17 @@
 # PO-2023-TESTS
 Unit tests for PO project.
 
+
+## Dependencies
+
+- Makefile - You probably already have it
+
+### On MacOS
+If you want to run this on MacOS you will need to install GNU's diff command for this to work properly. I recommend using a package manager like brew:
+```bash
+brew install diffutils
+```
+
 ## How to run
 Clone the repo
 ```bash
@@ -12,7 +23,3 @@ Followed by
 ```
 make
 ```
-
-## Dependencies
-
-- Makefile - You probably already have it
