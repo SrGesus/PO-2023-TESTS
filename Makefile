@@ -26,13 +26,13 @@ force:
 
 # Compare test results
 tests/%.in: force tests/%.out tests/%.run
-	@-if diff -iw --color tests/$*.out tests/$*.outhyp; \
+	@-if diff -iw -B --color tests/$*.out tests/$*.outhyp; \
 	then \
 		echo -e $* $(ccgreen)PASSED$(ccend).; \
 	else \
 		echo -e $* $(ccred)FAILED$(ccend).; \
-		(diff -iwu --color tests/$*.out tests/$*.outhyp || touch tests/$*.diff) 2> /dev/null; \
-		(diff -iwu --color tests/$*.out tests/$*.outhyp > tests/$*.diff || touch tests/$*.diff) 2> /dev/null; \
+		(diff -iwu -B --color tests/$*.out tests/$*.outhyp || touch tests/$*.diff) 2> /dev/null; \
+		(diff -iwu -B --color tests/$*.out tests/$*.outhyp > tests/$*.diff || touch tests/$*.diff) 2> /dev/null; \
 	fi
 
 # Run test %
