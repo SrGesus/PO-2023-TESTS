@@ -1,4 +1,9 @@
-# Path to the folder with the po-uilib.jar file 
+#################################################
+#              Paths to folders                 #
+#  Remember to escape espaces with a backlash   #
+#################################################
+
+# Path to the folder with the po-uilib.jar file
 PO_UILIB_DIR=/usr/share/java
 
 # Path to the folder with your project
