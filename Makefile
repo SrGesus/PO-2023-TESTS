@@ -1,7 +1,7 @@
 CONFIG=config
 include $(CONFIG)
 CLASSPATH=$(PO_UILIB_DIR)/po-uilib.jar:$(XXL_DIR)/xxl-core/xxl-core.jar:$(XXL_DIR)/xxl-app/xxl-app.jar
-CURRENT_DIR=$(shell pwd)
+CURRENT_DIR=$(shell pwd | sed 's/ /\\ /g')
 ccred="\033[0;31m\033[1m"
 ccyellow="\033[0;32m\033[1m"
 ccend="\033[0m"
