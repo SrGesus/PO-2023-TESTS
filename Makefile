@@ -9,7 +9,7 @@ TESTS_NUMBER=$(shell find tests -type f -name '*.in' | wc -l)
 TESTS_FAILED:=$$(find tests -type f -name '*.diff' | wc -l)
 
 .PHONY: all clean force
-all: clean $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR) $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(wildcard tests/*/*.in) $(wildcard tests/*.in)
+all: clean $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR) $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(wildcard tests/*/*.in) $(wildcard tests/*.in) post-clean
 	@echo
 	@echo
 	@if [ $(TESTS_FAILED) -gt 0 ]; \
@@ -49,11 +49,11 @@ tests/%.run:
 tests/%.out:
 	$(error $@ is missing. Please create it.)
 
-$(XXL_DIR)/xxl-core/xxl-core.jar: $(wildcard xxl-core/src/xxl/*.java) $(wildcard xxl-core/src/xxl/*/*.java)
+$(XXL_DIR)/xxl-core/xxl-core.jar:  $(shell find $(XXL_DIR)/xxl-core/src -name \*.java)
 	@echo xxl-core out of date. Recompiling...
 	$(MAKE) -C $(XXL_DIR)/xxl-core PO_UILIB_DIR="$(PO_UILIB_DIR)"
 
-$(XXL_DIR)/xxl-app/xxl-app.jar: $(wildcard xxl-app/src/xxl/app/*.java) $(wildcard xxl-app/src/xxl/app/*/*.java)
+$(XXL_DIR)/xxl-app/xxl-app.jar:  $(shell find $(XXL_DIR)/xxl-app/src -name \*.java)
 	@echo xxl-app out of date. Recompiling...
 	$(MAKE) -C $(XXL_DIR)/xxl-app PO_UILIB_DIR="$(PO_UILIB_DIR)"
 
@@ -62,6 +62,9 @@ clean:
 	@$(RM) tests/*.outhyp
 	@$(RM) tests/*/*.diff
 	@$(RM) tests/*.diff
+
+post-clean:
+	@$(RM) saved*
 	
 
 $(PO_UILIB_DIR)/po-uilib.jar:
