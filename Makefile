@@ -2,25 +2,22 @@ CONFIG=config
 include $(CONFIG)
 CLASSPATH=$(PO_UILIB_DIR)/po-uilib.jar:$(XXL_DIR)/xxl-core/xxl-core.jar:$(XXL_DIR)/xxl-app/xxl-app.jar
 CURRENT_DIR=$(shell pwd | sed 's/ /\\ /g')
-ccred="\033[0;31m\033[1m"
-ccgreen="\033[0;32m\033[1m"
-ccend="\033[0m"
+ccred=\033[0;31m\033[1m
+ccgreen=\033[0;32m\033[1m
+ccend=\033[0m
 TESTS=$(sort $(shell find tests -type f -name '*.in'))
 TESTS_NUMBER=$(shell find tests -type f -name '*.in' | wc -l)
 TESTS_FAILED:=$$(find tests -type f -name '*.diff' | wc -l)
 
 .PHONY: all clean force
 all: clean $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(TESTS) post-clean
-	@echo
-	@echo
+	@printf "\n\n"
 	@if [ $(TESTS_FAILED) -gt 0 ]; \
 	then \
-		echo -e Tests Passed $(ccred)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend); \
+		printf "Tests Passed $(ccred)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend)\n"; \
 	else \
-		echo -e Tests Passed $(ccgreen)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend); \
+		printf "Tests Passed $(ccgreen)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend)\n"; \
 	fi
-	@echo
-	@echo
 
 # Force target to run
 force:
@@ -29,9 +26,9 @@ force:
 tests/%.in: force tests/%.out tests/%.run
 	@-if (diff -iw -B --color tests/$*.outhyp tests/$*.out) > /dev/null; \
 	then \
-		echo -e $* $(ccgreen)PASSED$(ccend).; \
+		printf "$* $(ccgreen)PASSED$(ccend).\n"; \
 	else \
-		echo -e $* $(ccred)FAILED$(ccend).; \
+		printf "$* $(ccred)FAILED$(ccend).\n"; \
 		(diff -iwu -B --color tests/$*.outhyp tests/$*.out || touch tests/$*.diff) 2> /dev/null; \
 		(diff -iwu -B --color tests/$*.outhyp tests/$*.out > tests/$*.diff || touch tests/$*.diff) 2> /dev/null; \
 	fi
@@ -47,7 +44,6 @@ tests/%.run:
 	else \
 		java -cp $(CLASSPATH) -Din=$(CURRENT_DIR)/tests/$*.in -Dout=$(CURRENT_DIR)/tests/$*.outhyp xxl.app.App; \
 	fi
-	@echo >> tests/$*.outhyp
 
 
 tests/%.out:
