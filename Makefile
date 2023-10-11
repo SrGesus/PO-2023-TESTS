@@ -43,6 +43,7 @@ tests/%.run:
 	else \
 		java -cp $(CLASSPATH) -Din=$(CURRENT_DIR)/tests/$*.in -Dout=$(CURRENT_DIR)/tests/$*.outhyp xxl.app.App; \
 	fi
+	@echo >> tests/$*.outhyp
 
 
 tests/%.out:
