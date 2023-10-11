@@ -27,7 +27,7 @@
 - 35: Testa a função MUL com a referência de uma referência (de uma string, suposto dar #VALUE) /Irell/
 - 36: Testa a referência de referência (de uma string) /Irell/
 - 37: Testa a visualização de uma célula com uma string(que é só a plica) /Irell/
- -38: Todas as células formam uma cadeia de referências, e testa-se a visualização do início da cadeia
+- 38: Todas as células formam uma cadeia de referências, e testa-se a visualização do início da cadeia
 - 39: Testa a visualização de uma linha com vários tipos de célula
 - 40: Testa a visualização de uma coluna com vários tipos de célula
 - 41: Testa a visualização de todas as células, uma a uma com vários tipos de célula
