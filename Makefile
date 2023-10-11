@@ -27,7 +27,6 @@ force:
 
 # Compare test results
 tests/%.in: force tests/%.out tests/%.run
-	@echo ------------------ $* ------------------
 	@-if (diff -iw -B --color tests/$*.outhyp tests/$*.out) > /dev/null; \
 	then \
 		echo -e $* $(ccgreen)PASSED$(ccend).; \
@@ -41,6 +40,7 @@ tests/%.in: force tests/%.out tests/%.run
 
 # Run test %
 tests/%.run:
+	@echo ------------------ $* ------------------
 	@-if test -f "tests/$*.import"; \
 	then \
 		java -cp $(CLASSPATH) -Dimport=$(CURRENT_DIR)/tests/$*.import -Din=$(CURRENT_DIR)/tests/$*.in -Dout=$(CURRENT_DIR)/tests/$*.outhyp xxl.app.App; \

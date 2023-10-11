@@ -36,4 +36,3 @@ Testes:
 44: Testa o import de uma spreadsheet com uma célula vazia(explícita) e visualiza-a
 45: Testa o abrir e criar uma nova spreadsheet logo a seguir(mesmo do 43)
 46: Testa o abrir com FileOpenFailedException
-47: Testa a visualização de uma linha quando a gama é inserida ao contrário
