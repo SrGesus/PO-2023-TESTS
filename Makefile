@@ -26,7 +26,7 @@ force:
 
 # Compare test results
 tests/%.in: force tests/%.out tests/%.run
-	@-if diff -iw -B --color tests/$*.out tests/$*.outhyp; \
+	@-if (diff -iw -B --color tests/$*.out tests/$*.outhyp) > /dev/null; \
 	then \
 		echo -e $* $(ccgreen)PASSED$(ccend).; \
 	else \
