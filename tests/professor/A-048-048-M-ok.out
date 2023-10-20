@@ -1,0 +1,53 @@
+Menu Principal
+1 - Novo
+2 - Abrir
+3 - Guardar
+4 - Menu de Edição
+5 - Menu de Consultas
+0 - Sair
+Escolha uma opção: Menu de Edição
+1 - Visualizar
+2 - Inserir
+3 - Copiar
+4 - Apagar
+5 - Cortar
+6 - Colar
+7 - Mostrar 'cut buffer'
+0 - Sair
+Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): Insira o conteúdo da célula: Menu de Edição
+1 - Visualizar
+2 - Inserir
+3 - Copiar
+4 - Apagar
+5 - Cortar
+6 - Colar
+7 - Mostrar 'cut buffer'
+0 - Sair
+Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 4;2|10=2;3
+Menu de Edição
+1 - Visualizar
+2 - Inserir
+3 - Copiar
+4 - Apagar
+5 - Cortar
+6 - Colar
+7 - Mostrar 'cut buffer'
+0 - Sair
+Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 2;3|10
+Menu de Edição
+1 - Visualizar
+2 - Inserir
+3 - Copiar
+4 - Apagar
+5 - Cortar
+6 - Colar
+7 - Mostrar 'cut buffer'
+0 - Sair
+Escolha uma opção: Menu Principal
+1 - Novo
+2 - Abrir
+3 - Guardar
+4 - Menu de Edição
+5 - Menu de Consultas
+0 - Sair
+Escolha uma opção: 

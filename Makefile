@@ -45,16 +45,15 @@ tests/%.run:
 		java -cp $(CLASSPATH) -Din=$(CURRENT_DIR)/tests/$*.in -Dout=$(CURRENT_DIR)/tests/$*.outhyp xxl.app.App; \
 	fi
 
-
 tests/%.out:
 	$(error $@ is missing. Please create it.)
 
 $(XXL_DIR)/xxl-core/xxl-core.jar: $(XXL_DIR)/xxl-core $(shell find $(XXL_DIR)/xxl-core/src -name \*.java)
-	@echo xxl-core out of date. Recompiling...
+	@echo xxl-core possibly out of date. Recompiling...
 	$(MAKE) -C $(XXL_DIR)/xxl-core
 
 $(XXL_DIR)/xxl-app/xxl-app.jar: $(XXL_DIR)/xxl-app $(shell find $(XXL_DIR)/xxl-app/src -name \*.java)
-	@echo xxl-app out of date. Recompiling...
+	@echo xxl-app possibly out of date. Recompiling...
 	$(MAKE) -C $(XXL_DIR)/xxl-app PO_UILIB_DIR="$(PO_UILIB_DIR)"
 
 clean:

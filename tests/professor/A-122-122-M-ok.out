@@ -1,0 +1,30 @@
+Menu Principal
+1 - Novo
+2 - Abrir
+3 - Guardar
+4 - Menu de Edição
+5 - Menu de Consultas
+0 - Sair
+Escolha uma opção: Menu de Consultas
+1 - Procurar valores
+2 - Procurar funções
+0 - Sair
+Escolha uma opção: Valor a procurar: 1;1|'123
+2;4|'123=COALESCE(1;1:1;2)
+Menu de Consultas
+1 - Procurar valores
+2 - Procurar funções
+0 - Sair
+Escolha uma opção: Valor a procurar: 2;3|'123456=CONCAT(1;1:1;2)
+Menu de Consultas
+1 - Procurar valores
+2 - Procurar funções
+0 - Sair
+Escolha uma opção: Menu Principal
+1 - Novo
+2 - Abrir
+3 - Guardar
+4 - Menu de Edição
+5 - Menu de Consultas
+0 - Sair
+Escolha uma opção: 
