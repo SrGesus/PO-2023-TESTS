@@ -12,6 +12,8 @@ TESTS_FAILED:=$$(find tests -type f -name '*.diff' | wc -l)
 .PHONY: all clean force
 all: clean $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(TESTS) post-clean
 	@printf "\n\n"
+	@printf "$(ccred)Failed Tests:$(ccend)\n"
+	@cat failed_tests.txt
 	@if [ $(TESTS_FAILED) -gt 0 ]; \
 	then \
 		printf "Tests Passed $(ccred)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend)\n"; \
@@ -31,6 +33,7 @@ tests/%.in: force tests/%.out tests/%.run
 		printf "$* $(ccred)FAILED$(ccend).\n"; \
 		(diff -iwu -B --color tests/$*.outhyp tests/$*.out || touch tests/$*.diff) 2> /dev/null; \
 		(diff -iwu -B --color tests/$*.outhyp tests/$*.out > tests/$*.diff || touch tests/$*.diff) 2> /dev/null; \
+		echo $* >> failed_tests.txt; \
 	fi
 	@echo
 
@@ -61,6 +64,7 @@ clean:
 	@$(RM) tests/*.outhyp
 	@$(RM) tests/*/*.diff
 	@$(RM) tests/*.diff
+	@$(RM) failed_tests.txt
 
 post-clean:
 	@$(RM) saved*
