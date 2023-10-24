@@ -23,6 +23,8 @@ Followed by
 ```bash
 make
 ```
+If the output is too big use `make log` to log the output to a file. (You can also use `make log QUIET=true` to silence output in the terminal)
+
 You can run a single or a group of tests. But you should run make clean first. E.g:
 Running only the professor's tests
 ```bash
