@@ -80,7 +80,6 @@ clean:
 	@$(RM) tests/*/*.diff
 	@$(RM) tests/*.diff
 	@$(RM) failed_tests.txt
-	@$(RM) TESTS_REPORT.log
 
 post-clean:
 	@$(RM) saved*
