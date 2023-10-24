@@ -12,10 +12,10 @@ TESTS_FAILED:=$$(find tests -type f -name '*.diff' | wc -l)
 .PHONY: all clean force
 all: clean $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(TESTS) post-clean
 	@printf "\n\n"
-	@printf "$(ccred)Failed Tests:$(ccend)\n"
-	@cat failed_tests.txt
 	@if [ $(TESTS_FAILED) -gt 0 ]; \
 	then \
+                printf "$(ccred)Failed Tests:$(ccend)\n"; \
+	        cat failed_tests.txt; \
 		printf "Tests Passed $(ccred)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend)\n"; \
 	else \
 		printf "Tests Passed $(ccgreen)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend)\n"; \
