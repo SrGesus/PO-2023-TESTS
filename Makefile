@@ -4,12 +4,15 @@ CLASSPATH=$(PO_UILIB_DIR)/po-uilib.jar:$(XXL_DIR)/xxl-core/xxl-core.jar:$(XXL_DI
 CURRENT_DIR=$(shell pwd | sed 's/ /\\ /g')
 ccred=\033[0;31m\033[1m
 ccgreen=\033[0;32m\033[1m
+ccyellow=\033[1;33m\033[1m
 ccend=\033[0m
 TESTS=$(sort $(shell find tests -type f -name '*.in'))
 TESTS_NUMBER=$(shell find tests -type f -name '*.in' | wc -l)
 TESTS_FAILED:=$$(find tests -type f -name '*.diff' | wc -l)
+REPORT_FILE=TESTS_REPORT.log
+MAKEFLAGS += --no-print-directory
 
-.PHONY: all clean force
+.PHONY: all clean force log
 all: clean $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_DIR)/xxl-app/xxl-app.jar $(TESTS) post-clean
 	@printf "\n\n"
 	@if [ $(TESTS_FAILED) -gt 0 ]; \
@@ -20,6 +23,18 @@ all: clean $(PO_UILIB_DIR)/po-uilib.jar $(XXL_DIR)/xxl-core/xxl-core.jar $(XXL_D
 	else \
 		printf "Tests Passed $(ccgreen)[$$(($(TESTS_NUMBER) - $(TESTS_FAILED)))/$(TESTS_NUMBER)]$(ccend)\n"; \
 	fi
+
+
+log:
+ifeq ($(QUIET),true)
+	@printf "Testing in silent mode...\n";
+	@(make all > $(REPORT_FILE) 2>&1);
+else
+	@(make all 2>&1 | tee $(REPORT_FILE));
+endif
+	@printf "$(ccyellow)Testing report logged in $(REPORT_FILE)$(ccend)\n";
+
+
 
 # Force target to run
 force:
@@ -65,6 +80,7 @@ clean:
 	@$(RM) tests/*/*.diff
 	@$(RM) tests/*.diff
 	@$(RM) failed_tests.txt
+	@$(RM) TESTS_REPORT.log
 
 post-clean:
 	@$(RM) saved*
